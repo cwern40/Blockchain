@@ -41,6 +41,7 @@ def valid_proof(block_string, proof):
 
 if __name__ == '__main__':
     # What is the server address? IE `python3 miner.py https://server.com/api/`
+    coins_mined = 0
     if len(sys.argv) > 1:
         node = sys.argv[1]
     else:
@@ -76,4 +77,9 @@ if __name__ == '__main__':
         # TOD: If the server responds with a 'message' 'New Block Forged'
         # add 1 to the number of coins mined and print it.  Otherwise,
         # print the message from the server.
+        if data['message'] == 'New Block Forged':
+            coins_mined += 1
+            print(f'coins mined {coins_mined}')
+        else:
+            print(data['message'])
         pass
